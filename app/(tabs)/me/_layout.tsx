@@ -12,7 +12,6 @@ export default function MeStackLayout() {
           backgroundColor: isDark ? "#1c1c1e" : "#fff",
         },
         headerTitleStyle: { fontWeight: "600" },
-        headerShadowVisible: false,
         contentStyle: {
           backgroundColor: isDark ? "#000" : "#f2f2f7",
         },
@@ -23,6 +22,8 @@ export default function MeStackLayout() {
         options={{
           title: "Me",
           headerLargeTitle: true,
+          headerLargeTitleShadowVisible: true,
+          headerStyle: {},
         }}
       />
       <Stack.Screen name="awards" options={{ title: "Awards" }} />

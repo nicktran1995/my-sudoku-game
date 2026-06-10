@@ -1,6 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text, useColorScheme, View } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
 
 type GameId = "sudoku" | "caro";
 
@@ -23,7 +30,13 @@ export default function HomeScreen() {
   const sub = isDark ? "#8e8e93" : "#6d6d70";
 
   return (
-    <View style={[styles.container, { backgroundColor: isDark ? "#000" : "#f2f2f7" }]}>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={[
+        styles.container,
+        { backgroundColor: isDark ? "#000" : "#f2f2f7" },
+      ]}
+    >
       <Text style={[styles.heading, { color: sub }]}>Chọn game</Text>
       {GAMES.map((game) => (
         <Pressable
@@ -39,12 +52,14 @@ export default function HomeScreen() {
           </View>
           <View style={styles.cardText}>
             <Text style={[styles.title, { color: text }]}>{game.title}</Text>
-            <Text style={[styles.subtitle, { color: sub }]}>{game.subtitle}</Text>
+            <Text style={[styles.subtitle, { color: sub }]}>
+              {game.subtitle}
+            </Text>
           </View>
           <Ionicons name="chevron-forward" size={22} color={sub} />
         </Pressable>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 

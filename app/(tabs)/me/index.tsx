@@ -1,17 +1,36 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Href, useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text, useColorScheme, View } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
 
 type Item = { href: Href; title: string; icon: keyof typeof Ionicons.glyphMap };
 
 const ITEMS: Item[] = [
   { href: "/(tabs)/me/awards", title: "Awards", icon: "trophy-outline" },
-  { href: "/(tabs)/me/statistics", title: "Statistics", icon: "bar-chart-outline" },
+  {
+    href: "/(tabs)/me/statistics",
+    title: "Statistics",
+    icon: "bar-chart-outline",
+  },
   { href: "/(tabs)/me/settings", title: "Settings", icon: "settings-outline" },
-  { href: "/(tabs)/me/how-to-play", title: "How to play", icon: "book-outline" },
+  {
+    href: "/(tabs)/me/how-to-play",
+    title: "How to play",
+    icon: "book-outline",
+  },
   { href: "/(tabs)/me/rules", title: "Rules", icon: "document-text-outline" },
   { href: "/(tabs)/me/help", title: "Help", icon: "help-circle-outline" },
-  { href: "/(tabs)/me/about", title: "About game", icon: "information-circle-outline" },
+  {
+    href: "/(tabs)/me/about",
+    title: "About game",
+    icon: "information-circle-outline",
+  },
   { href: "/(tabs)/me/privacy", title: "Privacy", icon: "lock-closed-outline" },
 ];
 
@@ -25,21 +44,26 @@ export default function MeScreen() {
   const sub = isDark ? "#8e8e93" : "#6d6d70";
 
   return (
-    <View style={[styles.container, { backgroundColor: bg }]}>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={[styles.container, { backgroundColor: bg }]}
+    >
       <View style={[styles.profile, { backgroundColor: card }]}>
         <View style={styles.avatar}>
           <Ionicons name="person" size={40} color="#0a7ea4" />
         </View>
         <View style={styles.profileText}>
           <Text style={[styles.name, { color: text }]}>Player</Text>
-          <Text style={[styles.email, { color: sub }]}>profile@example.com</Text>
+          <Text style={[styles.email, { color: sub }]}>
+            profile@example.com
+          </Text>
         </View>
       </View>
 
       <Text style={[styles.section, { color: sub }]}>Tài khoản & cài đặt</Text>
       {ITEMS.map((item) => (
         <Pressable
-          key={item.href}
+          key={item.href.toString()}
           onPress={() => router.push(item.href)}
           style={({ pressed }) => [
             styles.row,
@@ -51,12 +75,15 @@ export default function MeScreen() {
           <Ionicons name="chevron-forward" size={20} color={sub} />
         </Pressable>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
+  container: {
+    flex: 1,
+    padding: 16,
+  },
   profile: {
     flexDirection: "row",
     alignItems: "center",

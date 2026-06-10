@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
-import { ScrollView, StyleSheet, Text, useColorScheme, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from "react-native";
 
 /** Placeholder: thay bằng dữ liệu từ storage / backend (ngày đã mở app chơi). */
 function useStreakMonth(year: number, month0: number) {
@@ -40,9 +46,12 @@ export default function DailyChallengesScreen() {
       contentContainerStyle={styles.content}
     >
       <View style={[styles.headerCard, { backgroundColor: card }]}>
-        <Text style={[styles.streak, { color: accent }]}>{streak} ngày liên tiếp</Text>
+        <Text style={[styles.streak, { color: accent }]}>
+          {streak} ngày liên tiếp
+        </Text>
         <Text style={[styles.caption, { color: sub }]}>
-          Các ngày có điểm danh (đã mở app chơi) được tô sáng — tích hợp lịch sử thật sau.
+          Các ngày có điểm danh (đã mở app chơi) được tô sáng — tích hợp lịch sử
+          thật sau.
         </Text>
       </View>
 
@@ -63,7 +72,11 @@ export default function DailyChallengesScreen() {
               key={i}
               style={[
                 styles.cell,
-                d && played.has(d) && { backgroundColor: `${accent}33`, borderColor: accent },
+                !!d &&
+                  played.has(d) && {
+                    backgroundColor: `${accent}33`,
+                    borderColor: accent,
+                  },
                 { borderColor: isDark ? "#3a3a3c" : "#e5e5ea" },
               ]}
             >
@@ -105,7 +118,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 8,
   },
-  weekLabel: { width: cellSize, textAlign: "center", fontSize: 12, fontWeight: "500" },
+  weekLabel: {
+    width: cellSize,
+    textAlign: "center",
+    fontSize: 12,
+    fontWeight: "500",
+  },
   grid: { flexDirection: "row", flexWrap: "wrap" },
   cell: {
     width: cellSize,
