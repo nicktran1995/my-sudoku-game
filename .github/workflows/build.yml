@@ -20,14 +20,12 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Setup Expo auth
-        uses: expo/expo-github-action@v8
-        with:
-          token: ${{ secrets.EXPO_TOKEN }}
-
       - name: Install dependencies
         run: npm ci
 
+      # eas-cli tự xác thực qua biến môi trường EXPO_TOKEN.
       # iOS tạm bỏ qua (chưa cấu hình credentials). Khi sẵn sàng, đổi --platform thành "all".
       - name: Build preview
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: npx eas-cli build --platform android --profile preview --non-interactive --no-wait
